@@ -1,12 +1,21 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addShip } from "../../redux/actions/shipAction";
 
 const Form = () => {
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [type, setType] = useState("Container");
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
+    dispatch(
+      addShip({
+        id: Date.now(),
+        name: name,
+        type: type,
+      })
+    );
     resetForm();
   };
 
